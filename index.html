@@ -56,8 +56,6 @@ img{max-width:100%; display:block;}
 .btn-primary:hover{background:var(--pink-deep); transform:translateY(-2px);}
 .btn-ghost{background:transparent; color:var(--ink); border:1.5px solid var(--line);}
 .btn-ghost:hover{border-color:var(--pink); color:var(--pink-deep);}
-.btn-ghost-light{background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.4);}
-.btn-ghost-light:hover{border-color:#fff; background:rgba(255,255,255,0.1);}
 .btn svg{width:18px; height:18px; flex-shrink:0;}
 
 /* ---------- SCROLL PROGRESS ---------- */
@@ -71,14 +69,11 @@ header.scrolled{background:rgba(250,247,248,0.94); backdrop-filter:blur(10px); b
 .nav-links{display:flex; align-items:center; gap:26px; font-size:0.86rem; font-weight:600;}
 .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:20px;}
 .nav-links a{position:relative; padding:4px 0;}
-header:not(.scrolled) .nav-links a{color:#fff;}
 .nav-links a::after{content:''; position:absolute; left:0; bottom:-2px; width:0; height:1.5px; background:var(--pink); transition:width 0.25s ease;}
 .nav-links a:hover::after{width:100%;}
 .nav-cta{display:flex; align-items:center; gap:14px; flex-shrink:0;}
 .nav-cta .btn{padding:12px 22px; font-size:0.85rem;}
-header:not(.scrolled) .nav-cta .btn-ghost{color:#fff; border-color:rgba(255,255,255,0.4);}
 .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px; z-index:200; flex-shrink:0; color:var(--ink);}
-header:not(.scrolled) .menu-toggle{color:#fff;}
 .menu-toggle span{display:block; width:24px; height:2px; background:currentColor; margin:5px 0; transition:0.3s;}
 
 @media(max-width:900px){
@@ -94,19 +89,20 @@ header:not(.scrolled) .menu-toggle{color:#fff;}
 }
 
 /* ---------- HERO ---------- */
-.hero{position:relative; min-height:100vh; display:flex; align-items:center; color:#fff; overflow:hidden;}
-.hero-bg{position:absolute; inset:0; background:linear-gradient(100deg, rgba(36,26,32,0.94) 30%, rgba(36,26,32,0.55) 100%), url('assets/dermatologia.jpg'); background-size:cover; background-position:80% 25%; filter:grayscale(1);}
-@media(max-width:640px){.hero-bg{background-position:70% 15%;}}
-.hero-content{position:relative; z-index:2; padding:150px 0 100px; max-width:640px;}
+.hero{position:relative; padding:118px 0 100px; background:linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%); overflow:hidden;}
+.hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr; gap:40px;}}
 .hero-eyebrow{display:inline-flex; align-items:center; gap:10px; margin-bottom:22px;}
 .hero-eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--pink);}
-.hero h1{font-size:clamp(2.3rem, 4.6vw, 3.9rem); color:#fff;}
-.hero h1 em{font-style:italic; color:#F5A0D2;}
-.hero p.lede{margin-top:24px; max-width:520px; font-size:1.1rem; color:rgba(255,255,255,0.82);}
-.hero-actions{margin-top:36px; display:flex; flex-wrap:wrap; gap:16px;}
-.hero-stats{margin-top:56px; display:flex; flex-wrap:wrap; gap:40px; padding-top:28px; border-top:1px solid rgba(255,255,255,0.2);}
-.hero-stats .stat b{display:block; font-family:'Spectral',serif; font-size:1.9rem; font-weight:600; color:#fff;}
-.hero-stats .stat span{font-size:0.82rem; color:rgba(255,255,255,0.68);}
+.hero h1{font-size:clamp(2.2rem, 4.2vw, 3.6rem);}
+.hero h1 em{font-style:italic; color:var(--pink-deep);}
+.hero p.lede{margin-top:24px; max-width:480px; font-size:1.08rem; color:var(--ink-soft);}
+.hero-actions{margin-top:34px; display:flex; flex-wrap:wrap; gap:16px;}
+.hero-stats{margin-top:48px; display:flex; flex-wrap:wrap; gap:36px; padding-top:26px; border-top:1px solid var(--line);}
+.hero-stats .stat b{display:block; font-family:'Spectral',serif; font-size:1.7rem; font-weight:600; color:var(--pink-deep);}
+.hero-stats .stat span{font-size:0.8rem; color:var(--stone);}
+.hero-photo-card{position:relative; border-radius:20px; overflow:hidden; box-shadow:var(--shadow); aspect-ratio:4/5; max-width:420px; margin:0 auto; border:6px solid #fff; outline:1px solid var(--line);}
+.hero-photo-card img{width:100%; height:100%; object-fit:cover; object-position:center 15%; filter:grayscale(1);}
 
 /* ---------- DIVIDER (signature: duotone frame corner) ---------- */
 .divider{position:relative; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden;}
@@ -260,9 +256,8 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--pink); outline-off
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="container">
-      <div class="hero-content reveal in">
+    <div class="container hero-grid">
+      <div class="reveal in">
         <div class="hero-eyebrow"><span class="dot"></span><span class="eyebrow">Clínica Médica · Beiramar Shopping · Florianópolis</span></div>
         <h1>Beleza, saúde e <em>autoestima</em> através de cuidados médicos.</h1>
         <p class="lede">Há mais de uma década, a SkinBeauty é pioneira em depilação a laser em Florianópolis. Hoje somos a maior clínica médica do Beiramar Shopping, com uma equipe multiespecialista comprometida com ética e resultado.</p>
@@ -271,12 +266,17 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--pink); outline-off
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.29 1.19-1.78 1.24-.46.05-.95.24-3.18-.66-2.68-1.09-4.4-3.8-4.53-3.98-.13-.18-1.08-1.44-1.08-2.75 0-1.3.68-1.94.92-2.2.24-.26.53-.32.7-.32.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.14.16-.29.35-.41.47-.14.13-.28.28-.12.55.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.13.45.2.51.31.07.11.07.62-.15 1.23z"/></svg>
             Agendar consulta
           </a>
-          <a href="#especialidades" class="btn btn-ghost-light">Ver especialidades</a>
+          <a href="#especialidades" class="btn btn-ghost">Ver especialidades</a>
         </div>
         <div class="hero-stats">
           <div class="stat"><b>10+ anos</b><span>pioneira em depilação a laser</span></div>
           <div class="stat"><b>7</b><span>especialidades médicas em um só lugar</span></div>
           <div class="stat"><b>Nº1</b><span>maior clínica médica do Beiramar Shopping</span></div>
+        </div>
+      </div>
+      <div class="reveal in">
+        <div class="hero-photo-card">
+          <img src="assets/dermatologia.jpg" alt="Tratamento dermatológico na SkinBeauty">
         </div>
       </div>
     </div>
@@ -299,7 +299,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--pink); outline-off
           </div>
         </div>
         <div class="sobre-photo reveal">
-          <img src="assets/dermatologia.jpg" alt="Tratamento dermatológico na SkinBeauty">
+          <img src="assets/nutricao.jpg" alt="Cuidado nutricional na SkinBeauty">
         </div>
       </div>
     </div>
